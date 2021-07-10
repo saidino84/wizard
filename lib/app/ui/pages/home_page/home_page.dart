@@ -5,6 +5,7 @@ class HomePage extends GetView<HomeController> {
   HomePage({this.user_name});
   @override
   Widget build(BuildContext context) {
+    print('HOME PAGE');
     return Scaffold(
       appBar: AppBar(
         title: Text('HomePage'),

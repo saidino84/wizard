@@ -21,3 +21,11 @@ export 'package:wizard/app/controllers/upload_controller.dart';
 export 'package:wizard/app/controllers/initial_controller.dart';
 export 'package:wizard/app/controllers/register_controller.dart';
 export 'package:wizard/app/controllers/login_controller.dart';
+export 'package:wizard/app/controllers/app_controller.dart';
+
+// themes
+export 'package:wizard/app/ui/theme/colors.dart';
+
+import 'package:wizard/app/ui/theme/colors.dart';
+
+var c = AppColors.primaryLightColor;

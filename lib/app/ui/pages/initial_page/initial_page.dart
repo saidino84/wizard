@@ -1,15 +1,14 @@
 import 'package:wizard/app/ui/utils/helpers.dart';
 
+import 'components/body.dart';
+
 class InitialPage extends GetView<InitialController> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    print('INITIAL PAGE');
     return Scaffold(
-      appBar: AppBar(
-        title: Text('InitialPage'),
-      ),
-      body: SafeArea(
-        child: Text('InitialController'),
-      ),
+      body: Body(size: size),
     );
   }
 }

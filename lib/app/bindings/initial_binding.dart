@@ -1,11 +1,9 @@
-
-import 'package:get/get.dart';
-import '../controllers/initial_controller.dart';
-
+import 'package:wizard/app/ui/utils/helpers.dart';
 
 class InitialBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<InitialController>(() => InitialController());
+    Get.lazyPut<AppController>(() => AppController());
   }
 }

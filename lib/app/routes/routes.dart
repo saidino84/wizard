@@ -12,7 +12,7 @@ class Pages {
   static final pages = [
     GetPage(
       name: Routes.INITIAL,
-      page: () => HomePage(),
+      page: () => InitialPage(),
       bindings: [
         InitialBinding(),
       ],
