@@ -2,7 +2,7 @@
     package="com.saidino.flutter.wizard">
    <application
         android:label="wizard"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@drawable/wavs_colored">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

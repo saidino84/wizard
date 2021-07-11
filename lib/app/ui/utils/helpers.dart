@@ -26,6 +26,12 @@ export 'package:wizard/app/controllers/app_controller.dart';
 // themes
 export 'package:wizard/app/ui/theme/colors.dart';
 
+// strings
+export 'package:wizard/app/ui/utils/strings.dart';
+
 import 'package:wizard/app/ui/theme/colors.dart';
+
+// routes
+export 'package:wizard/app/routes/routes.dart';
 
 var c = AppColors.primaryLightColor;

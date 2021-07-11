@@ -13,7 +13,7 @@ var xml = """
 
 class AppColors {
   static final primaryColor = Color(0xffd81b60);
-  static final primaryLightColor = (0xffff5c8d);
+  static final primaryLightColor = Color(0xffff5c8d);
   static final primaryColorDarkColor = Color(0xffa00037);
   static final secondaryColor = Color(0xff512da8);
   static final secondaryLightColor = Color(0xff8559da);
