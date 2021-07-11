@@ -5,15 +5,16 @@ class AssetSong {
   final String? singer;
   final String? image;
   final int? duration;
-  final Color? color;
+  final Color color;
 
-  AssetSong({this.name, this.singer, this.image, this.duration, this.color});
+  AssetSong(
+      {this.name, this.singer, this.image, this.duration, required this.color});
 }
 
-List<AssetSong> mostPopular = [
+List<AssetSong> fake_mostPopular = [
   AssetSong(
     name: 'Champion',
-    image: 'assets/imageswiizard_redeyes_champion.jpg',
+    image: 'assets/musics/wiizard_redeyes_champion.jpg',
     singer: 'Wizard Redeyes',
     duration: 241,
     color: Colors.grey,

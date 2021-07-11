@@ -51,6 +51,7 @@ flutter:
   assets:
       
       - assets/images/wizard_pics/
+      - assets/images/other/
       - assets/images/
       - assets/musics/
       - assets/

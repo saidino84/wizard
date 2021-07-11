@@ -23,6 +23,8 @@ export 'package:wizard/app/controllers/register_controller.dart';
 export 'package:wizard/app/controllers/login_controller.dart';
 export 'package:wizard/app/controllers/app_controller.dart';
 
+export 'package:wizard/app/data/models/asset_music.dart';
+
 // themes
 export 'package:wizard/app/ui/theme/colors.dart';
 

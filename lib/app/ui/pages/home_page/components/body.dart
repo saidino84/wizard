@@ -50,18 +50,56 @@ class Body extends GetView<AppController> {
                   ),
                 ),
               ),
-              Container(height: 300, child: TrackWidget())
+              Container(
+                  height: 300,
+                  child: TrackWidget(
+                    notifyParent: refresh,
+                  ))
             ],
           ),
         )
       ],
     );
   }
+
+  refresh() {
+    print('hi');
+  }
 }
 
 class TrackWidget extends GetView<AppController> {
+  final VoidCallback notifyParent;
+
+  TrackWidget({required this.notifyParent});
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: fake_mostPopular.length,
+        itemBuilder: (context, index) {
+          return Container(
+            margin: EdgeInsets.all(10),
+            width: 200,
+            // height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: fake_mostPopular[index].color,
+                  blurRadius: 1,
+                  spreadRadius: 0.3,
+                ),
+              ],
+              image: DecorationImage(
+                image: AssetImage(
+                  fake_mostPopular[index]!.image ??
+                      'assets/images/other/song1.jpg',
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
+          );
+        });
   }
 }
