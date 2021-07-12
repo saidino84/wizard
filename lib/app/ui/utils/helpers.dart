@@ -7,7 +7,7 @@ export 'package:wizard/app/ui/pages/login_page/login_page.dart';
 export 'package:wizard/app/ui/pages/register_page/register_page.dart';
 export 'package:wizard/app/ui/pages/upload_page/upload_page.dart';
 export 'package:wizard/app/ui/pages/initial_page/initial_page.dart';
-
+export 'package:wizard/app/ui/pages/musicplayer_page/musicplayer_page.dart';
 // bindings
 export 'package:wizard/app/bindings/initial_binding.dart';
 export 'package:wizard/app/bindings/home_binding.dart';
@@ -22,6 +22,7 @@ export 'package:wizard/app/controllers/initial_controller.dart';
 export 'package:wizard/app/controllers/register_controller.dart';
 export 'package:wizard/app/controllers/login_controller.dart';
 export 'package:wizard/app/controllers/app_controller.dart';
+export 'package:wizard/app/controllers/musicplayer_controller.dart';
 
 export 'package:wizard/app/data/models/asset_music.dart';
 

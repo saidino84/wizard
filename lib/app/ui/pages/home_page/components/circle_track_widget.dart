@@ -58,6 +58,7 @@ class CircleTrackWidget extends GetView<AppController> {
                 return GestureDetector(
                   onTap: () {
                     //Todo: ainda nao funciona
+                    controller.current_song_list.value = songs;
                     controller.chnage_song_by_index(index);
                   },
                   child: Container(

@@ -5,7 +5,7 @@ class AssetSong {
   final String singer;
   final String image;
   final int duration;
-  final Color color;
+  MaterialColor color;
 
   AssetSong(
       {required this.name,
@@ -48,30 +48,30 @@ List<AssetSong> fake_mostPopular = [
 
 List<AssetSong> fake_new_release = [
   AssetSong(
-    name: 'Champion',
+    name: "like it doens't hurt",
     image: 'assets/images/other/song1.jpg',
-    singer: 'Wizard Redeyes',
+    singer: 'Charlotte Cardin',
     duration: 241,
     color: Colors.blue,
   ),
   AssetSong(
-    name: 'Falsa',
+    name: 'Love in the brain',
     image: 'assets/images/other/song2.jpg',
-    singer: 'Wizard ft BiBowling',
+    singer: 'Tvorchi',
     duration: 320,
     color: Colors.orange,
   ),
   AssetSong(
-    name: 'Nao Sabes',
+    name: 'lay you',
     image: 'assets/images/other/song4.jpg',
-    singer: 'Wizard Redeyes ft Tenebrose Derko',
+    singer: 'idk',
     duration: 300,
     color: Colors.red,
   ),
   AssetSong(
-    name: 'XINGONDO',
+    name: 'go to the hello',
     image: 'assets/images/other/song3.jpg',
-    singer: 'Wizard Redeyes',
+    singer: 'Danito',
     duration: 300,
     color: Colors.grey,
   ),

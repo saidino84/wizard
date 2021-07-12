@@ -51,7 +51,7 @@ class Body extends GetView<AppController> {
                   bottom: 20,
                 ),
                 child: Text(
-                  '960 Playlists',
+                  '${fake_new_release.length} Songs',
                   style: TextStyle(
                     color: Colors.grey,
                     fontFamily: 'Fuggles',
@@ -111,11 +111,13 @@ class Body extends GetView<AppController> {
               SizedBox(
                 height: 130,
               ),
-              Obx(() => Align(
-                    alignment: Alignment.bottomLeft,
-                    child:
-                        PlayerHome(current_song: controller.current_song.value),
-                  )),
+              Obx(
+                () => Align(
+                  alignment: Alignment.bottomLeft,
+                  child:
+                      PlayerHome(current_song: controller.current_song.value),
+                ),
+              ),
             ],
           ),
         )

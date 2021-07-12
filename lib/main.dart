@@ -14,7 +14,7 @@ class MyApp extends GetView<AppController> {
     return GetMaterialApp(
       title: 'Saidino Tricks',
       debugShowCheckedModeBanner: false,
-      initialRoute: app_controller.user_is_loged ? Routes.HOME : Routes.INITIAL,
+      initialRoute: app_controller.user_is_loged ? Routes.INITIAL : Routes.HOME,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

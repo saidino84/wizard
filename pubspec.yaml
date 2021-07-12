@@ -31,6 +31,7 @@ dependencies:
 
   # Getx Extralight statemanager,++ package
   get: ^4.1.4
+  palette_generator: ^0.3.0
 
 dev_dependencies:
   flutter_test:

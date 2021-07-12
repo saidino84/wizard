@@ -6,6 +6,7 @@ class Routes {
   static final String LOGIN = '/login';
   static final String REGISTER = '/register';
   static final String UPLOAD = '/upload';
+  static final String MUSICPLAYER = '/musicplayer';
 }
 
 class Pages {
