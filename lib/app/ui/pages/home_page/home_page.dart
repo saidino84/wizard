@@ -6,10 +6,12 @@ import 'components/body.dart';
 
 class HomePage extends GetView<HomeController> {
   final String? user_name;
+
   HomePage({this.user_name});
   @override
   Widget build(BuildContext context) {
     print('HOME PAGE');
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
@@ -52,7 +54,7 @@ class HomePage extends GetView<HomeController> {
           ),
         ],
       ),
-      body: SafeArea(child: Body()),
+      body: SafeArea(child: Body(size)),
     );
   }
 }

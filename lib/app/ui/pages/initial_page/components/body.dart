@@ -52,12 +52,21 @@ class Body extends GetView<HomeController> {
                       ),
                     ),
                     Text(
-                      'Beats',
+                      'Red Eyes',
                       style: TextStyle(
                         fontFamily: 'Fuggles',
                         fontSize: 54,
                         fontWeight: FontWeight.bold,
-                        color: Colors.redAccent,
+                        color: Colors.red,
+                      ),
+                    ),
+                    Text(
+                      '\nBeats',
+                      style: TextStyle(
+                        fontFamily: 'Fuggles',
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
                       ),
                     ),
                   ],

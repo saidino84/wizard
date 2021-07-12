@@ -1,9 +1,18 @@
+import 'dart:math';
+
 import 'package:wizard/app/ui/utils/helpers.dart';
 
+import 'circle_track_widget.dart';
+import 'player_widget.dart';
+import 'track_widget.dart';
+
 class Body extends GetView<AppController> {
+  final Size size;
+
+  Body(this.size);
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Stack(
       children: [
         SingleChildScrollView(
@@ -51,10 +60,62 @@ class Body extends GetView<AppController> {
                 ),
               ),
               Container(
-                  height: 300,
-                  child: TrackWidget(
-                    notifyParent: refresh,
-                  ))
+                height: size.height * 0.350,
+                child: TrackWidget(
+                  size: size,
+                  notifyParent: refresh,
+                ),
+              ),
+              CircleTrackWidget(
+                songs: fake_new_release,
+                title: 'Beats Recentes',
+                subtitle: '2456 songs',
+                notifyParent: refresh,
+              ),
+              SizedBox(height: 34),
+              Obx(() => Container(
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 10,
+                    ),
+                    height: 200,
+                    width: 300,
+                    decoration: BoxDecoration(
+                      color: controller.current_song.value.color,
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.white,
+                          controller.current_song.value.color,
+                        ],
+                      ),
+                    ),
+                    child: Container(
+                      height: 40,
+                      width: 50,
+                      child: ClipRRect(
+                        child: Image.asset(
+                          controller.current_song.value.image,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  )),
+              CircleTrackWidget(
+                songs: [...fake_mostPopular, ...fake_new_release],
+                title: 'Beats Favoritas',
+                subtitle: '${[
+                  ...fake_mostPopular,
+                  ...fake_new_release
+                ].length} songs',
+                notifyParent: refresh,
+              ),
+              SizedBox(
+                height: 130,
+              ),
+              Obx(() => Align(
+                    alignment: Alignment.bottomLeft,
+                    child:
+                        PlayerHome(current_song: controller.current_song.value),
+                  )),
             ],
           ),
         )
@@ -64,42 +125,5 @@ class Body extends GetView<AppController> {
 
   refresh() {
     print('hi');
-  }
-}
-
-class TrackWidget extends GetView<AppController> {
-  final VoidCallback notifyParent;
-
-  TrackWidget({required this.notifyParent});
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        itemCount: fake_mostPopular.length,
-        itemBuilder: (context, index) {
-          return Container(
-            margin: EdgeInsets.all(10),
-            width: 200,
-            // height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: fake_mostPopular[index].color,
-                  blurRadius: 1,
-                  spreadRadius: 0.3,
-                ),
-              ],
-              image: DecorationImage(
-                image: AssetImage(
-                  fake_mostPopular[index]!.image ??
-                      'assets/images/other/song1.jpg',
-                ),
-                fit: BoxFit.cover,
-              ),
-            ),
-          );
-        });
   }
 }
