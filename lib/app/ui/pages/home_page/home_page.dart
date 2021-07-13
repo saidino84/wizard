@@ -1,7 +1,5 @@
 import 'dart:math';
-
 import 'package:wizard/app/ui/utils/helpers.dart';
-
 import 'components/body.dart';
 
 class HomePage extends GetView<HomeController> {
@@ -21,10 +19,6 @@ class HomePage extends GetView<HomeController> {
         leading: Icon(
           Icons.search,
         ),
-        // title: Text(
-        //   'All songs',
-        //   style: TextStyle(fontWeight: FontWeight.bold),
-        // ),
         actions: [
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
