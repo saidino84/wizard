@@ -4,9 +4,8 @@ import 'package:wizard/app/ui/utils/fonts.dart';
 import 'package:wizard/app/ui/utils/helpers.dart';
 import 'package:wizard/app/ui/utils/helpers.dart';
 
-class MusicplayerPage extends GetView<MusicplayerController> {
+class MusicplayerPage extends GetView<AppController> {
   final AssetSong song_playing;
-  final AppController app_controller = Get.find<AppController>();
   MusicplayerPage({
     required this.song_playing,
   });
@@ -86,7 +85,7 @@ class MusicplayerPage extends GetView<MusicplayerController> {
                               '${song_playing.singer}',
                               style: TextStyle(
                                 fontSize: 13,
-                                color: app_controller.current_song_color.value,
+                                color: controller.current_song_color.value,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -138,23 +137,113 @@ class MusicplayerPage extends GetView<MusicplayerController> {
                         children: [
                           Padding(
                             padding:
-                                EdgeInsets.only(left: 20, right: 20, top: 30),
+                                EdgeInsets.only(left: 5, right: 5, top: 30),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  song_playing.name,
-                                  style: TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: AppFonts.BrushH,
-                                    color: Colors.white,
+                                Container(
+                                  width: 150,
+                                  child: Text(
+                                    song_playing.name,
+                                    // maxLines: 2,
+                                    softWrap: false,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: AppFonts.FUNGGLES,
+                                      color: Colors.white,
+                                    ),
                                   ),
+                                ),
+                                // SizedBox(width: 20),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.favorite_border,
+                                        color: Colors.white,
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.cloud_download_outlined,
+                                        color: Colors.orange,
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
                           ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: 8,
+                            ),
+                            child: Text(
+                              song_playing.singer,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: AppFonts.UBUNTU,
+                              ),
+                            ),
+                          ),
+                          Obx(
+                            () => Container(
+                              width: size.width,
+                              child: SliderTheme(
+                                data: SliderTheme.of(context).copyWith(
+                                  thumbShape: RoundSliderThumbShape(
+                                      enabledThumbRadius: 4),
+                                  trackShape: RectangularSliderTrackShape(),
+                                  trackHeight: 6,
+                                ),
+                                child: Slider(
+                                  value: controller.current_slider.value,
+                                  activeColor: Colors.red,
+                                  max: controller.current_song.value.duration
+                                      .toDouble(),
+                                  min: 0,
+                                  onChanged: (d) {
+                                    controller.change_song_duration(d);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                          Obx(
+                            () => Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    Duration(
+                                      seconds:
+                                          controller.current_slider.toInt(),
+                                    ).toString().split('.')[0].substring(2),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    Duration(
+                                      seconds:
+                                          controller.current_slider.toInt(),
+                                    ).toString().split('.')[0].substring(2),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     ),

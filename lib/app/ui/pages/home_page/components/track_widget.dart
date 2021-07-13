@@ -2,7 +2,7 @@ import 'package:wizard/app/ui/utils/helpers.dart';
 
 class TrackWidget extends GetView<AppController> {
   final VoidCallback notifyParent;
-  Size size;
+  final Size size;
 
   TrackWidget({required this.notifyParent, required this.size});
   @override

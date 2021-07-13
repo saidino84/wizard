@@ -860,7 +860,28 @@ class MusicplayerPage extends GetView<MusicplayerController> {
 
 
 ```
-
+# CUSTOMIZACAO DE SLIDER_THEME
+```dart
+Container(
+  width: size.width - 120,
+  child: SliderTheme(
+    data: SliderTheme.of(context).copyWith(
+        thumbShape:
+            RoundSliderThumbShape(enabledThumbRadius: 4),
+        trackShape: RectangularSliderTrackShape(),
+        trackHeight: 4),
+    child: Slider(
+      activeColor: Colors.white,
+      max: controller.current_song.value.duration.toDouble(),
+      value: controller.current_slider.value,
+      min: 0,
+      onChanged: (d) {
+        controller.change_song_duration(d);
+      },
+    ),
+  ),
+),
+```
 # A IMPLEMENTACAO DA PARTE DA IMAGE OFUSCADA  [Na parte do player]
 ```dart
 

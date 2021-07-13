@@ -42,12 +42,10 @@ class AppController extends GetxController {
 
   void change_song_duration(double d) {
     current_slider.value = d;
-    update_palete_colors();
   }
 
   void chnage_song_by_index(int index) {
     curent_index.value = index;
-    update_palete_colors();
   }
 
   void generate_image_pallete() {}

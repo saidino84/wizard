@@ -37,4 +37,5 @@ import 'package:wizard/app/ui/theme/colors.dart';
 // routes
 export 'package:wizard/app/routes/routes.dart';
 
+// export 'package:auto_size_text/auto_size_text.dart';
 var c = AppColors.primaryLightColor;
