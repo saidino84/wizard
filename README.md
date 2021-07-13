@@ -27,6 +27,7 @@ class Controller extends GetxController {
 
 
 ```
+![Gifcurry GUI](https://i.imgur.com/SJ8zovM.gif)
 
 # A IMPLEMENTACAO DA PARTE DA IMAGE OFUSCADA  [Na parte do player]
 ```dart
