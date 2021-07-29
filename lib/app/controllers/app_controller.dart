@@ -20,32 +20,32 @@ class AppController extends GetxController {
     var len_songs = current_song_list.value.length - 1;
     if (curent_index.value < len_songs) {
       curent_index.value++;
-      update_palete_colors();
+      // update_palete_colors();
       return;
     }
     if (curent_index.value >= len_songs) curent_index.value = 0;
-    update_palete_colors();
+    // update_palete_colors();
   }
 
-  void update_palete_colors() async {
-    print('CURRENT SONG IS ${current_song.value.name}');
-    final PaletteGenerator color_generator =
-        await PaletteGenerator.fromImageProvider(
+  Future update_palete_colors() {
+    return PaletteGenerator.fromImageProvider(
       AssetImage(current_song.value.image),
       size: Size(400, 300),
-    );
-
-    final cor = color_generator.lightMutedColor ?? PaletteColor(Colors.blue, 2);
-    // current
-    current_song_color.value = cor.color;
+    ).then((color_generator) {
+      final cor =
+          color_generator.lightMutedColor ?? PaletteColor(Colors.blue, 2);
+      // current_song_color.value = cor.color;
+    });
   }
 
   void change_song_duration(double d) {
     current_slider.value = d;
+    // update_palete_colors();
   }
 
   void chnage_song_by_index(int index) {
     curent_index.value = index;
+    // update_palete_colors();
   }
 
   void generate_image_pallete() {}

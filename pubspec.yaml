@@ -34,6 +34,15 @@ dependencies:
   palette_generator: ^0.3.0
   auto_size_text: ^2.1.0
 
+  firebase_core: ^1.4.0
+  cloud_firestore: ^2.4.0
+  firebase_storage: ^10.0.1
+
+  file_picker: ^3.0.4
+  image_picker: ^0.8.2
+  just_audio: ^0.9.3
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
