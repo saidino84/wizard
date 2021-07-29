@@ -3,6 +3,7 @@ import 'package:wizard/app/ui/utils/helpers.dart';
 import 'components/body.dart';
 
 class HomePage extends GetView<HomeController> {
+  var music_controller = Get.find<MusicplayerController>();
   final String? user_name;
 
   HomePage({this.user_name});

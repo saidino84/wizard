@@ -1,6 +1,6 @@
 import 'package:wizard/app/ui/utils/helpers.dart';
 
-class PlayerHome extends GetView<AppController> {
+class PlayerHome extends GetView<MusicplayerController> {
   final AssetSong current_song;
 
   PlayerHome({required this.current_song});
@@ -18,12 +18,15 @@ class PlayerHome extends GetView<AppController> {
           padding: EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             // color: Colors.black.withOpacity(0.3),
-            color: controller.current_song_color.value,
+            // color: controller.current_song_color.value,
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(30),
             ),
             gradient: LinearGradient(
-              colors: [Colors.black38, controller.current_song_color.value],
+              colors: [
+                Colors.black38,
+                // controller.current_song_color.value
+              ],
             ),
           ),
           child: Column(
@@ -75,7 +78,7 @@ class PlayerHome extends GetView<AppController> {
                     children: [
                       IconButton(
                         onPressed: () {
-                          controller.next_song();
+                          // controller.next_song();
                         },
                         icon: Icon(
                           Icons.skip_next_outlined,
@@ -99,7 +102,9 @@ class PlayerHome extends GetView<AppController> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    Duration(seconds: controller.current_slider.value.toInt())
+                    Duration(seconds: 3000
+                            // controller.current_slider.value.toInt()
+                            )
                         .toString()
                         .split('.')[0]
                         .substring(2),
@@ -114,18 +119,22 @@ class PlayerHome extends GetView<AppController> {
                           trackShape: RectangularSliderTrackShape(),
                           trackHeight: 4),
                       child: Slider(
+                        value: 23.1,
                         activeColor: Colors.white,
-                        max: controller.current_song.value.duration.toDouble(),
-                        value: controller.current_slider.value,
+                        // max: controller.current_song.value.duration.toDouble(),
+                        // value: controller.current_slider.value,
                         min: 0,
                         onChanged: (d) {
-                          controller.change_song_duration(d);
+                          // controller.change_song_duration(d);
                         },
                       ),
                     ),
                   ),
                   Text(
-                    Duration(seconds: controller.current_song.value.duration)
+                    // Duration(seconds: controller.current_song.value.duration)
+                    Duration(seconds: 3000
+                            // /controller.current_song.value.duration
+                            )
                         .toString()
                         .split('.')[0]
                         .substring(2),

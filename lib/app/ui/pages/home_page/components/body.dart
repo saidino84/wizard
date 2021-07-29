@@ -6,7 +6,7 @@ import 'circle_track_widget.dart';
 import 'player_widget.dart';
 import 'track_widget.dart';
 
-class Body extends GetView<AppController> {
+class Body extends GetView<MusicplayerController> {
   final Size size;
 
   Body(this.size);
@@ -80,11 +80,11 @@ class Body extends GetView<AppController> {
                     height: 200,
                     width: 300,
                     decoration: BoxDecoration(
-                      color: controller.current_song.value.color,
+                      // color: controller.current_song.value.color,
                       gradient: LinearGradient(
                         colors: [
                           Colors.white,
-                          controller.current_song.value.color,
+                          // controller.current_song.value.color,
                         ],
                       ),
                     ),
@@ -93,7 +93,7 @@ class Body extends GetView<AppController> {
                       width: 50,
                       child: ClipRRect(
                         child: Image.asset(
-                          controller.current_song.value.image,
+                          'assets/images/mic.png',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -114,8 +114,8 @@ class Body extends GetView<AppController> {
               Obx(
                 () => Align(
                   alignment: Alignment.bottomLeft,
-                  child:
-                      PlayerHome(current_song: controller.current_song.value),
+                  // child:
+                  // PlayerHome(current_song: controller.current_song.value),
                 ),
               ),
             ],
