@@ -1,3 +1,5 @@
+import 'package:wizard/app/bindings/app_binding.dart';
+import 'package:wizard/app/bindings/musicplayer_binding.dart';
 import 'package:wizard/app/ui/utils/helpers.dart';
 
 class Routes {
@@ -16,30 +18,33 @@ class Pages {
       page: () => InitialPage(),
       bindings: [
         InitialBinding(),
+        AppBinding(),
+        MusicplayerBinding(),
       ],
     ),
     GetPage(
       name: Routes.HOME,
       page: () => HomePage(),
       bindings: [
-        InitialBinding(),
         HomeBinding(),
+        AppBinding(),
+        MusicplayerBinding(),
       ],
     ),
     GetPage(
       name: Routes.LOGIN,
       page: () => LoginPage(),
       bindings: [
-        InitialBinding(),
         LoginBinding(),
+        AppBinding(),
       ],
     ),
     GetPage(
       name: Routes.REGISTER,
       page: () => RegisterPage(),
       bindings: [
-        InitialBinding(),
         RegisterBinding(),
+        AppBinding(),
       ],
     ),
     GetPage(
@@ -48,7 +53,14 @@ class Pages {
       bindings: [
         InitialBinding(),
         UploadBinding(),
+        MusicplayerBinding(),
+        AppBinding()
       ],
     ),
+    GetPage(
+      name: Routes.MUSICPLAYER,
+      page: () => MusicplayerPage(),
+      bindings: [InitialBinding(), MusicplayerBinding(), AppBinding()],
+    )
   ];
 }

@@ -5,6 +5,5 @@ class UploadBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<UploadController>(() => UploadController());
-    Get.lazyPut<SongRepository>(() => SongRepository());
   }
 }

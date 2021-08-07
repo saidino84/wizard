@@ -6,91 +6,102 @@ import 'circle_track_widget.dart';
 import 'player_widget.dart';
 import 'track_widget.dart';
 
-class Body extends GetView<MusicplayerController> {
+// MusicplayerController
+class Body extends GetView<AppController> {
   final Size size;
 
   Body(this.size);
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 20.0),
-                child: Text(
-                  'Mais',
-                  style: TextStyle(
-                    color: AppColors.secondaryTextColor,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+    return AnimatedPositioned(
+      duration: Duration(milliseconds: 100),
+      top: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        height: size.height,
+        width: size.width,
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 20.0),
+                    child: Text(
+                      'Mais',
+                      style: TextStyle(
+                        color: AppColors.secondaryTextColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 20.0,
-                ),
-                child: Text(
-                  'Tocadas',
-                  style: TextStyle(
-                    color: AppColors.secondaryTextColor,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: 20.0,
+                    ),
+                    child: Text(
+                      'Tocadas',
+                      style: TextStyle(
+                        color: AppColors.secondaryTextColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 20.0,
-                  top: 5,
-                  bottom: 20,
-                ),
-                child: Text(
-                  '${fake_new_release.length} Songs',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontFamily: 'Fuggles',
-                    fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: 20.0,
+                      top: 5,
+                      bottom: 20,
+                    ),
+                    child: Text(
+                      '${fake_new_release.length} Songs',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontFamily: 'Fuggles',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Container(
-                height: size.height * 0.350,
-                child: TrackWidget(
-                  size: size,
-                  notifyParent: refresh,
-                ),
-              ),
-              CircleTrackWidget(
-                songs: fake_new_release,
-                title: 'Beats Recentes',
-                subtitle: '2456 songs',
-                notifyParent: refresh,
-              ),
-              SizedBox(height: 34),
-              Obx(() => Container(
+                  Container(
+                    height: size.height * 0.350,
+                    child: TrackWidget(
+                      size: size,
+                      notifyParent: refresh,
+                    ),
+                  ),
+                  CircleTrackWidget(
+                    // songs: fake_new_release,
+                    songs: <Song>[],
+                    title: 'Beats Recentes',
+                    subtitle: '2456 songs',
+                    notifyParent: refresh,
+                  ),
+                  SizedBox(height: 34),
+                  Container(
                     margin: EdgeInsets.symmetric(
                       horizontal: 10,
                     ),
                     height: 200,
-                    width: 300,
+                    width: double.infinity,
                     decoration: BoxDecoration(
                       // color: controller.current_song.value.color,
                       gradient: LinearGradient(
                         colors: [
                           Colors.white,
+                          Colors.black
                           // controller.current_song.value.color,
                         ],
                       ),
                     ),
                     child: Container(
-                      height: 40,
-                      width: 50,
+                      height: 60,
+                      width: double.infinity,
                       child: ClipRRect(
                         child: Image.asset(
                           'assets/images/mic.png',
@@ -98,30 +109,32 @@ class Body extends GetView<MusicplayerController> {
                         ),
                       ),
                     ),
-                  )),
-              CircleTrackWidget(
-                songs: [...fake_mostPopular, ...fake_new_release],
-                title: 'Beats Favoritas',
-                subtitle: '${[
-                  ...fake_mostPopular,
-                  ...fake_new_release
-                ].length} songs',
-                notifyParent: refresh,
+                  ),
+                  CircleTrackWidget(
+                    songs: <Song>[],
+                    title: 'Beats Favoritas',
+                    subtitle: '${[
+                      ...fake_mostPopular,
+                      ...fake_new_release
+                    ].length} songs',
+                    notifyParent: refresh,
+                  ),
+                  SizedBox(
+                    height: 130,
+                  ),
+                  // Obx(
+                  //   () => Align(
+                  //     alignment: Alignment.bottomLeft,
+                  //     child:
+                  //         PlayerHome(current_song: controller.current_song.value),
+                  //   ),
+                  // ),
+                ],
               ),
-              SizedBox(
-                height: 130,
-              ),
-              Obx(
-                () => Align(
-                  alignment: Alignment.bottomLeft,
-                  // child:
-                  // PlayerHome(current_song: controller.current_song.value),
-                ),
-              ),
-            ],
-          ),
-        )
-      ],
+            )
+          ],
+        ),
+      ),
     );
   }
 

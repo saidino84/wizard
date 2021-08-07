@@ -8,10 +8,11 @@ class PlayerHome extends GetView<MusicplayerController> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Obx(
-      () => GestureDetector(
+    return Padding(
+      padding: EdgeInsets.all(1.0),
+      child: GestureDetector(
         onTap: () {
-          Get.to(() => MusicplayerPage(song_playing: current_song));
+          Get.to(() => MusicplayerPage());
         },
         child: Container(
           height: 130,

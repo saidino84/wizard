@@ -1,10 +1,11 @@
 import 'package:wizard/app/ui/utils/helpers.dart';
 
-class CircleTrackWidget extends GetView<AppController> {
+class CircleTrackWidget extends GetView<MusicplayerController> {
   final String title;
-  final List<AssetSong> songs;
+  final List<Song> songs;
   final String subtitle;
   final VoidCallback notifyParent;
+  final MusicplayerController mcontroller = Get.find<MusicplayerController>();
 
   CircleTrackWidget(
       {required this.notifyParent,
@@ -58,8 +59,12 @@ class CircleTrackWidget extends GetView<AppController> {
                 return GestureDetector(
                   onTap: () {
                     //Todo: ainda nao funciona
-                    controller.current_song_list.value = songs;
-                    controller.chnage_song_by_index(index);
+                    controller.current_song_list = songs;
+                    controller.change_song_by_index(index);
+                    mcontroller.current_song = Song(
+                        artist: 'Wiizard',
+                        cover_url: 'www.tourl.com',
+                        songName: 'Maconde');
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 10),
@@ -69,27 +74,33 @@ class CircleTrackWidget extends GetView<AppController> {
                       children: [
                         CircleAvatar(
                           radius: 40,
-                          backgroundImage: AssetImage(
-                            song.image,
-                          ),
+                          backgroundImage: song.cover_url != null
+                              ? NetworkImage(
+                                  song.cover_url!,
+                                )
+                              : null,
                         ),
                         SizedBox(
                           height: 5,
                         ),
-                        Text(
-                          song.name,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Fuggles',
+                        Expanded(
+                          child: Text(
+                            song.songName ?? 'Unknown',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Fuggles',
+                            ),
                           ),
                         ),
-                        Text(
-                          song.singer,
-                          softWrap: true,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: Colors.white54,
+                        Expanded(
+                          child: Text(
+                            song.artist ?? 'Unknown',
+                            softWrap: true,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: Colors.white54,
+                            ),
                           ),
                         ),
                       ],

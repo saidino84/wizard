@@ -24,7 +24,10 @@ export 'package:wizard/app/controllers/login_controller.dart';
 export 'package:wizard/app/controllers/app_controller.dart';
 export 'package:wizard/app/controllers/musicplayer_controller.dart';
 
+export 'package:wizard/app/data/services/song_repository.dart';
+
 export 'package:wizard/app/data/models/asset_music.dart';
+export 'package:wizard/app/data/models/song.dart';
 
 // themes
 export 'package:wizard/app/ui/theme/colors.dart';

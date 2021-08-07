@@ -3,7 +3,7 @@ import 'package:wizard/app/data/models/song.dart';
 
 class SongRepository {
   final CollectionReference song_reference =
-      FirebaseFirestore.instance.collection('adim');
+      FirebaseFirestore.instance.collection('admin');
 
   List<Song> songFromFirebase_api(QuerySnapshot snapshot) {
     if (snapshot != null) {
@@ -12,7 +12,7 @@ class SongRepository {
         return Song.fromJson(dada).copyWith(uid: song_json.id);
       }).toList();
     }
-    return <Song>[];
+    return [];
   }
 
   Stream<List<Song>> getSongs() {

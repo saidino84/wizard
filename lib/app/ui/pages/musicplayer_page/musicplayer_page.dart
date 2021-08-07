@@ -2,13 +2,10 @@ import 'dart:ui';
 
 import 'package:wizard/app/ui/utils/fonts.dart';
 import 'package:wizard/app/ui/utils/helpers.dart';
-import 'package:wizard/app/ui/utils/helpers.dart';
 
-class MusicplayerPage extends GetView<AppController> {
-  final AssetSong song_playing;
-  MusicplayerPage({
-    required this.song_playing,
-  });
+class MusicplayerPage extends GetView<MusicplayerController> {
+  Song get song_playing => controller.current_song;
+
   // MusicplayerPage create() => MusicplayerPage();
   @override
   Widget build(BuildContext context) {
@@ -22,7 +19,7 @@ class MusicplayerPage extends GetView<AppController> {
               child: Container(
                 height: kToolbarHeight,
                 width: size.width * 0.8,
-                color: Colors.white24,
+                color: Colors.red,
               ),
             ),
             Hero(
@@ -33,7 +30,7 @@ class MusicplayerPage extends GetView<AppController> {
                 width: size.width,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(song_playing.image),
+                    image: NetworkImage(song_playing.cover_url!),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -70,27 +67,38 @@ class MusicplayerPage extends GetView<AppController> {
                         ),
                         onPressed: () => Get.back(),
                       ),
-                      Wrap(
-                        direction: Axis.vertical,
-                        children: [
-                          Text(
-                            '${song_playing.name}',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 13,
-                            ),
-                          ),
-                          Obx(
-                            () => Text(
-                              '${song_playing.singer}',
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: controller.current_song_color.value,
-                                fontWeight: FontWeight.bold,
+                      Expanded(
+                        child: Container(
+                          width: size.width * 0.3,
+                          color: Colors.red,
+                          padding: EdgeInsets.all(8),
+                          child: Column(
+                            // direction: Axis.vertical,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${song_playing.songName ?? 'Unknown'}",
+                                overflow: TextOverflow.ellipsis,
+                                // maxLines: 1,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 13,
+                                ),
                               ),
-                            ),
+                              Obx(
+                                () => Text(
+                                  '${song_playing.artist}',
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    // color: controller.current_song_color.value,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                       IconButton(
                         icon: Icon(
@@ -122,7 +130,7 @@ class MusicplayerPage extends GetView<AppController> {
                   child: BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
                     child: Container(
-                      height: 200,
+                      height: size.height * 0.2,
                       width: size.width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
@@ -145,7 +153,7 @@ class MusicplayerPage extends GetView<AppController> {
                                 Container(
                                   width: 150,
                                   child: Text(
-                                    song_playing.name,
+                                    song_playing.songName ?? 'Unknow',
                                     // maxLines: 2,
                                     softWrap: false,
                                     overflow: TextOverflow.ellipsis,
@@ -185,15 +193,15 @@ class MusicplayerPage extends GetView<AppController> {
                               left: 8,
                             ),
                             child: Text(
-                              song_playing.singer,
+                              "${song_playing.artist ?? 'Desconhecido'}",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: AppFonts.UBUNTU,
                               ),
                             ),
                           ),
-                          Obx(
-                            () => Container(
+                          Flexible(
+                            child: Container(
                               width: size.width,
                               child: SliderTheme(
                                 data: SliderTheme.of(context).copyWith(
@@ -203,18 +211,22 @@ class MusicplayerPage extends GetView<AppController> {
                                   trackHeight: 6,
                                 ),
                                 child: Slider(
-                                  value: controller.current_slider.value,
+                                  value:
+                                      23.0, //controller.current_slider.value,
                                   activeColor: Colors.red,
-                                  max: controller.current_song.value.duration
-                                      .toDouble(),
+                                  max: 100,
+                                  // max: controller.current_song.value.duration
+                                  //     .toDouble(),
                                   min: 0,
                                   onChanged: (d) {
-                                    controller.change_song_duration(d);
+                                    // controller.change_song_duration(d);
                                   },
                                 ),
                               ),
                             ),
                           ),
+
+                          /**
                           Obx(
                             () => Padding(
                               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -223,19 +235,23 @@ class MusicplayerPage extends GetView<AppController> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    Duration(
-                                      seconds:
-                                          controller.current_slider.toInt(),
-                                    ).toString().split('.')[0].substring(2),
+                                    Duration(seconds: 300
+                                            // controller.current_slider.toInt(),
+                                            )
+                                        .toString()
+                                        .split('.')[0]
+                                        .substring(2),
                                     style: TextStyle(
                                       color: Colors.white,
                                     ),
                                   ),
                                   Text(
-                                    Duration(
-                                      seconds:
-                                          controller.current_slider.toInt(),
-                                    ).toString().split('.')[0].substring(2),
+                                    Duration(seconds: 300
+                                            // controller.current_slider.toInt(),
+                                            )
+                                        .toString()
+                                        .split('.')[0]
+                                        .substring(2),
                                     style: TextStyle(
                                       color: Colors.white,
                                     ),
@@ -243,7 +259,7 @@ class MusicplayerPage extends GetView<AppController> {
                                 ],
                               ),
                             ),
-                          )
+                          )*/
                         ],
                       ),
                     ),

@@ -3,9 +3,8 @@ import 'package:wizard/app/ui/utils/helpers.dart';
 import 'components/body.dart';
 
 class HomePage extends GetView<HomeController> {
-  var music_controller = Get.find<MusicplayerController>();
   final String? user_name;
-
+  var mcontroller = Get.find<MusicplayerController>();
   HomePage({this.user_name});
   @override
   Widget build(BuildContext context) {
@@ -30,10 +29,10 @@ class HomePage extends GetView<HomeController> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold, fontFamily: 'Ubuntu'),
               ),
-              Text(
-                'Pemba',
-                style: TextStyle(fontSize: 15, fontFamily: 'Sacramento'),
-              ),
+              Obx(() => Text(
+                    'Pemba ${mcontroller.current_song.artist}',
+                    style: TextStyle(fontSize: 15, fontFamily: 'Sacramento'),
+                  )),
             ],
           ),
           Padding(
@@ -49,7 +48,158 @@ class HomePage extends GetView<HomeController> {
           ),
         ],
       ),
-      body: SafeArea(child: Body(size)),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Body(size),
+            HomePlaying(size: size, song: null),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HomePlaying extends GetView<MusicplayerController> {
+  Song? song;
+  HomePlaying({
+    this.song,
+    Key? key,
+    required this.size,
+  }) : super(key: key);
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => AnimatedPositioned(
+        duration: Duration(seconds: 1),
+        curve: Curves.easeInToLinear,
+        bottom: controller.current_song.artist != null ? 10 : -220,
+        left: 10,
+        right: 2,
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: InkWell(
+            onTap: () => Get.toNamed(Routes.MUSICPLAYER),
+            hoverColor: Colors.red,
+            child: Container(
+              padding: EdgeInsets.all(8.0),
+              height: size.height * 0.14,
+              width: size.width * 0.9,
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.8),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                children: [
+                  SizedBox(
+                    // height: 54,
+                    // width: 54,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: controller.current_song.cover_url != null
+                            ? Image.network(controller.current_song.cover_url!)
+                            : Image.asset('assets/images/other/song4.jpg')),
+                  ),
+                  Flexible(
+                    child: Container(
+                      padding: EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  controller.current_song != null
+                                      ? controller.current_song.artist ??
+                                          'Unknown'
+                                      : "NO sound so far",
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  controller.current_song != null
+                                      ? controller.current_song.songName ??
+                                          'Unknown'
+                                      : "---",
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Flexible(
+                            child: Container(
+                              // color: Colors.yellowAccent,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                // crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.stop_circle_outlined,
+                                          color: Colors.red),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.play_circle_fill_rounded,
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                          Icons.pause_circle_filled_rounded),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.download,
+                                          color: Colors.greenAccent),
+                                    ),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.favorite_border,
+                                      color: Colors.yellowAccent,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          Expanded(
+                              child: Slider(
+                            value: 32,
+                            max: 100,
+                            min: 0,
+                            onChanged: (e) {},
+                          )),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
