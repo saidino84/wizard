@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wizard/app/data/models/firebase_image.dart';
+import 'package:wizard/app/ui/pages/covers_page/componets/image_details.dart';
 import '../../../controllers/covers_controller.dart';
 
 class CoversPage extends GetView<CoversController> {
@@ -42,12 +43,19 @@ class CoversPage extends GetView<CoversController> {
                                 var file = files[index];
                                 return Card(
                                   child: ListTile(
-                                    leading: Container(
-                                      width: 70,
-                                      height: 72,
-                                      child: Image.network(
-                                        file.url,
-                                        fit: BoxFit.cover,
+                                    onTap: () => Get.to(
+                                      ImageDetails(
+                                        image: file,
+                                      ),
+                                    ),
+                                    leading: ClipOval(
+                                      child: Container(
+                                        width: 70,
+                                        height: 76,
+                                        child: Image.network(
+                                          file.url,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                     title: Text('${file.name}'),

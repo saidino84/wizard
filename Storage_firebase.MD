@@ -45,4 +45,57 @@ class FirebaseApi{
     }
 }
 
+//View
+
+
+ body: FutureBuilder<List<FirebaseImage>>(
+            future: controller.futurefiles,
+            builder: (ctx, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                default:
+                  if (snapshot.hasError) {
+                    return Center(
+                        child:
+                            Text('Some thik was wrong :\n ${snapshot.error}'));
+                  } else {
+                    final files = snapshot.data!;
+                    return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          buildHeader(
+                              '/flutfirebase/covers =${files.length} arquivos '),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: files.length,
+                              itemBuilder: (ctx, index) {
+                                var file = files[index];
+                                return Card(
+                                  child: ListTile(
+                                    leading: Container(
+                                      width: 70,
+                                      height: 72,
+                                      child: Image.network(
+                                        file.url,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    title: Text('${file.name}'),
+                                    subtitle: Text('${file.url}'),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ]);
+                  }
+              }
+            })
+
 ```
