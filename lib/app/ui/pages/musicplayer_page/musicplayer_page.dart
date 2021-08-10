@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:wizard/app/ui/pages/covers_page/covers_page.dart';
 import 'package:wizard/app/ui/utils/fonts.dart';
 import 'package:wizard/app/ui/utils/helpers.dart';
 
@@ -105,7 +106,9 @@ class MusicplayerPage extends GetView<MusicplayerController> {
                           Icons.info,
                           color: Colors.white,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed(Routes.COVER);
+                        },
                       ),
                     ],
                   ),
@@ -130,7 +133,7 @@ class MusicplayerPage extends GetView<MusicplayerController> {
                   child: BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
                     child: Container(
-                      height: size.height * 0.2,
+                      height: size.height * 0.3,
                       width: size.width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
@@ -145,20 +148,20 @@ class MusicplayerPage extends GetView<MusicplayerController> {
                         children: [
                           Padding(
                             padding:
-                                EdgeInsets.only(left: 5, right: 5, top: 30),
+                                EdgeInsets.only(left: 5, right: 5, top: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  width: 150,
+                                Expanded(
+                                  // width: 150,
                                   child: Text(
                                     song_playing.songName ?? 'Unknow',
                                     // maxLines: 2,
                                     softWrap: false,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
-                                      fontSize: 30,
+                                      fontSize: 13,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: AppFonts.FUNGGLES,
                                       color: Colors.white,
@@ -200,66 +203,114 @@ class MusicplayerPage extends GetView<MusicplayerController> {
                               ),
                             ),
                           ),
-                          Flexible(
-                            child: Container(
-                              width: size.width,
-                              child: SliderTheme(
-                                data: SliderTheme.of(context).copyWith(
-                                  thumbShape: RoundSliderThumbShape(
-                                      enabledThumbRadius: 4),
-                                  trackShape: RectangularSliderTrackShape(),
-                                  trackHeight: 6,
-                                ),
-                                child: Slider(
-                                  value:
-                                      23.0, //controller.current_slider.value,
-                                  activeColor: Colors.red,
-                                  max: 100,
-                                  // max: controller.current_song.value.duration
-                                  //     .toDouble(),
-                                  min: 0,
-                                  onChanged: (d) {
-                                    // controller.change_song_duration(d);
-                                  },
-                                ),
+                          Container(
+                            width: size.width,
+                            child: SliderTheme(
+                              data: SliderTheme.of(context).copyWith(
+                                thumbShape: RoundSliderThumbShape(
+                                    enabledThumbRadius: 4),
+                                trackShape: RectangularSliderTrackShape(),
+                                trackHeight: 6,
+                              ),
+                              child: Slider(
+                                value: 23.0, //controller.current_slider.value,
+                                activeColor: Colors.red,
+                                max: 100,
+                                // max: controller.current_song.value.duration
+                                //     .toDouble(),
+                                min: 0,
+                                onChanged: (d) {
+                                  // controller.change_song_duration(d);
+                                },
                               ),
                             ),
                           ),
 
                           /**
                           Obx(
-                            () => Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    Duration(seconds: 300
-                                            // controller.current_slider.toInt(),
-                                            )
-                                        .toString()
-                                        .split('.')[0]
-                                        .substring(2),
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
+                            () => */
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  Duration(seconds: 300
+                                          // controller.current_slider.toInt(),
+                                          )
+                                      .toString()
+                                      .split('.')[0]
+                                      .substring(2),
+                                  style: TextStyle(
+                                    color: Colors.white,
                                   ),
-                                  Text(
-                                    Duration(seconds: 300
-                                            // controller.current_slider.toInt(),
-                                            )
-                                        .toString()
-                                        .split('.')[0]
-                                        .substring(2),
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
+                                ),
+                                Text(
+                                  Duration(seconds: 300
+                                          // controller.current_slider.toInt(),
+                                          )
+                                      .toString()
+                                      .split('.')[0]
+                                      .substring(2),
+                                  style: TextStyle(
+                                    color: Colors.white,
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          )*/
+                          ),
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.repeat,
+                                    color: Colors.white,
+                                    // size: 0,
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.skip_previous_rounded,
+                                    color: Colors.white,
+                                    // size: 0,
+                                  ),
+                                ),
+                                Obx(() => IconButton(
+                                      onPressed: () {
+                                        // controller.next_song();
+                                        controller.play_pause2();
+                                      },
+                                      icon: Icon(
+                                        controller.paused.value != true
+                                            ? Icons.pause_circle_filled_rounded
+                                            : Icons.play_circle_fill_rounded,
+                                        color: Colors.blue,
+                                        size: 40,
+                                      ),
+                                    )),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.skip_next_outlined,
+                                    color: Colors.white,
+                                    // size: 0,
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.shuffle,
+                                    color: Colors.white,
+                                    // size: 0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),

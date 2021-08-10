@@ -4,6 +4,7 @@ import 'package:wizard/app/data/models/song.dart';
 class SongRepository {
   final CollectionReference song_reference =
       FirebaseFirestore.instance.collection('admin');
+  // song_reference.
 
   List<Song> songFromFirebase_api(QuerySnapshot snapshot) {
     if (snapshot != null) {
@@ -18,4 +19,8 @@ class SongRepository {
   Stream<List<Song>> getSongs() {
     return song_reference.snapshots().map(songFromFirebase_api);
   }
+
+  // Stream<List<Song>> getCurrentSong() {
+
+  // }
 }

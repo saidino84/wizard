@@ -40,5 +40,11 @@ import 'package:wizard/app/ui/theme/colors.dart';
 // routes
 export 'package:wizard/app/routes/routes.dart';
 
+export 'package:audio_service/audio_service.dart';
+export 'package:get/get.dart';
+export 'package:wizard/app/data/models/song.dart';
+export 'package:wizard/app/data/services/audio_payer_service.dart';
+export 'package:wizard/app/data/services/song_repository.dart';
+
 // export 'package:auto_size_text/auto_size_text.dart';
 var c = AppColors.primaryLightColor;

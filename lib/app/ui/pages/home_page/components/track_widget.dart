@@ -160,6 +160,7 @@ class WizardSongList extends GetView<MusicplayerController> {
             print('Tracando o song');
             // controller.chnage_song_by_index(index);
             controller.current_song = song;
+            controller.playSound_2();
           },
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),

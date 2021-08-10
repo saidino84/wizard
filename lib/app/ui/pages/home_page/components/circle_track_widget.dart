@@ -60,7 +60,6 @@ class CircleTrackWidget extends GetView<MusicplayerController> {
                   onTap: () {
                     //Todo: ainda nao funciona
                     controller.current_song_list = songs;
-                    controller.change_song_by_index(index);
                     mcontroller.current_song = Song(
                         artist: 'Wiizard',
                         cover_url: 'www.tourl.com',

@@ -1,5 +1,7 @@
 import 'package:wizard/app/bindings/app_binding.dart';
+import 'package:wizard/app/bindings/covers_binding.dart';
 import 'package:wizard/app/bindings/musicplayer_binding.dart';
+import 'package:wizard/app/ui/pages/covers_page/covers_page.dart';
 import 'package:wizard/app/ui/utils/helpers.dart';
 
 class Routes {
@@ -9,6 +11,7 @@ class Routes {
   static final String REGISTER = '/register';
   static final String UPLOAD = '/upload';
   static final String MUSICPLAYER = '/musicplayer';
+  static final String COVER = '/cover';
 }
 
 class Pages {
@@ -61,6 +64,8 @@ class Pages {
       name: Routes.MUSICPLAYER,
       page: () => MusicplayerPage(),
       bindings: [InitialBinding(), MusicplayerBinding(), AppBinding()],
-    )
+    ),
+    GetPage(
+        name: Routes.COVER, page: () => CoversPage(), binding: CoversBinding())
   ];
 }
