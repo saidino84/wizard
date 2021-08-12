@@ -239,25 +239,34 @@ class WizardSongList extends GetView<MusicplayerController> {
                               spreadRadius: 0.3,
                             ),
                           ], color: primaryColor),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                      child: Stack(
                         children: [
-                          Container(
-                            height: 60,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: [
-                                primaryColor,
-                                Colors.grey.withOpacity(0.7),
-                              ]),
+                          Align(
+                            alignment: Alignment(0, 0),
+                            child: Icon(
+                              Icons.music_note,
+                              size: 50,
                             ),
-                            child: Center(
-                              child: Text(
-                                '${song.artist}',
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
+                          ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                              height: 60,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(colors: [
+                                  primaryColor,
+                                  Colors.grey.withOpacity(0.7),
+                                ]),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '${song.artist}',
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),
