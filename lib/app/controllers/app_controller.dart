@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:wizard/app/data/provider/app_permisions.dart';
@@ -14,6 +15,9 @@ class AppController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     appdata.write('darkmode', false);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor:
+            Get.isDarkMode ? Colors.redAccent : Colors.greenAccent));
     super.onInit();
   }
 
@@ -75,11 +79,16 @@ class AppController extends GetxController {
   void changeThme() {
     if (Get.isDarkMode) {
       Get.changeThemeMode(ThemeMode.light);
+
       _is_dark.value = false;
     } else {
       (Get.changeThemeMode(ThemeMode.dark));
       _is_dark.value = true;
     }
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor:
+            Get.isDarkMode ? Colors.greenAccent : Colors.redAccent));
   }
 }
 
