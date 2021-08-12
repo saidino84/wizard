@@ -1,5 +1,7 @@
 import 'dart:math';
 
+// import 'package:wizard/app/ui/theme/constats.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:wizard/app/ui/utils/helpers.dart';
 
 class TrackWidget extends GetView<MusicplayerController> {
@@ -126,6 +128,7 @@ class ListError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final primaryColor = Theme.of(context).primaryColor;
     return ListView.builder(
         itemCount: 4,
         itemBuilder: (_, index) {
@@ -149,7 +152,9 @@ class WizardSongList extends GetView<MusicplayerController> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final primaryColor = Theme.of(context).primaryColor;
     return ListView.builder(
+      // padding: EdgeInsets.all(KDefaultPadding),
       shrinkWrap: true,
       scrollDirection: Axis.horizontal,
       itemCount: songs!.length,
@@ -162,41 +167,105 @@ class WizardSongList extends GetView<MusicplayerController> {
             controller.current_song = song;
             controller.playSound_2();
           },
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: Container(
-                // margin: EdgeInsets.all(10),
-                width: size.width * 0.390,
-                // height: 150,
-                decoration: BoxDecoration(
-                    // borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        // color: fake_mostPopular[index].color,
-                        blurRadius: 1,
-                        spreadRadius: 0.3,
-                      ),
-                    ],
-                    image: song.cover_url != null
-                        ? DecorationImage(
-                            image: NetworkImage(
-                              song.cover_url!,
+          child: Padding(
+            padding: const EdgeInsets.all(KDefaultPadding),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: CachedNetworkImage(
+                  imageUrl: song.cover_url ?? '',
+                  imageBuilder: (context, imageProvider) {
+                    return Container(
+                      // margin: EdgeInsets.all(10),
+
+                      width: size.width * 0.390,
+                      // height: 150,
+                      decoration: BoxDecoration(
+                          // borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              // color: fake_mostPopular[index].color,
+                              blurRadius: 1,
+                              spreadRadius: 0.3,
                             ),
-                            fit: BoxFit.cover,
-                          )
-                        : null,
-                    color: fake_mostPopular[2].color),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      height: 40,
-                      width: double.infinity,
-                      decoration: BoxDecoration(color: Colors.grey),
-                    ),
-                  ],
+                          ],
+                          image: imageProvider != null
+                              ? DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
+                                )
+                              : null,
+                          color: primaryColor),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            height: 60,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(colors: [
+                                primaryColor,
+                                Colors.grey.withOpacity(0.7),
+                              ]),
+                            ),
+                            child: Center(
+                              child: Text(
+                                '${song.artist}',
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  errorWidget: (ctx, error, stacktrac) {
+                    return Container(
+                      // margin: EdgeInsets.all(10),
+
+                      width: size.width * 0.390,
+                      // height: 150,
+                      decoration: BoxDecoration(
+                          // borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              // color: fake_mostPopular[index].color,
+                              blurRadius: 1,
+                              spreadRadius: 0.3,
+                            ),
+                          ], color: primaryColor),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            height: 60,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(colors: [
+                                primaryColor,
+                                Colors.grey.withOpacity(0.7),
+                              ]),
+                            ),
+                            child: Center(
+                              child: Text(
+                                '${song.artist}',
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

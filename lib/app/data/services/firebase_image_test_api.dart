@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:wizard/app/data/models/firebase_image.dart';
+import 'package:wizard/app/data/provider/app_permisions.dart';
 
 class FirebaseApi {
   static Future<List<FirebaseImage>> listAll(String path) async {
@@ -71,10 +72,10 @@ class FirebaseApi {
     final folder = 'saidino_apps';
     final path = Directory('storage/emulated/0/$folder');
 
-    // Permision.
+    AppPermisions.storage_permision();
 
     if (await path.exists()) {
-      Get.snackbar('Folder Exists', 'ja tem esse directory');
+      // Get.snackbar('Folder Exists', 'ja tem esse directory');
       return path;
     }
     await path.create();

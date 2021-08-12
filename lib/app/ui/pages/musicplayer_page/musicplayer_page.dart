@@ -20,7 +20,6 @@ class MusicplayerPage extends GetView<MusicplayerController> {
               child: Container(
                 height: kToolbarHeight,
                 width: size.width * 0.8,
-                color: Colors.red,
               ),
             ),
             Hero(
@@ -30,10 +29,13 @@ class MusicplayerPage extends GetView<MusicplayerController> {
                 height: size.height,
                 width: size.width,
                 decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(song_playing.cover_url!),
-                    fit: BoxFit.cover,
-                  ),
+                  color: context.theme.primaryColor,
+                  image: song_playing.cover_url != null
+                      ? DecorationImage(
+                          image: NetworkImage(song_playing.cover_url!),
+                          fit: BoxFit.cover,
+                        )
+                      : null,
                 ),
               ),
             ),
@@ -71,7 +73,6 @@ class MusicplayerPage extends GetView<MusicplayerController> {
                       Expanded(
                         child: Container(
                           width: size.width * 0.3,
-                          color: Colors.red,
                           padding: EdgeInsets.all(8),
                           child: Column(
                             // direction: Axis.vertical,

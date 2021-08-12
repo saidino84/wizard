@@ -30,12 +30,11 @@ export 'package:wizard/app/data/models/asset_music.dart';
 export 'package:wizard/app/data/models/song.dart';
 
 // themes
-export 'package:wizard/app/ui/theme/colors.dart';
 
 // strings
 export 'package:wizard/app/ui/utils/strings.dart';
 
-import 'package:wizard/app/ui/theme/colors.dart';
+import 'package:wizard/app/theme/constats.dart';
 
 // routes
 export 'package:wizard/app/routes/routes.dart';
@@ -45,6 +44,9 @@ export 'package:get/get.dart';
 export 'package:wizard/app/data/models/song.dart';
 export 'package:wizard/app/data/services/audio_payer_service.dart';
 export 'package:wizard/app/data/services/song_repository.dart';
+export 'package:wizard/app/ui/global_widgets/app_drawer.dart';
 
 // export 'package:auto_size_text/auto_size_text.dart';
+export 'package:wizard/app/theme/constats.dart';
+
 var c = AppColors.primaryLightColor;

@@ -8,11 +8,6 @@ class CoversPage extends GetView<CoversController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('CoversPage'),
-          backgroundColor: Colors.blueAccent,
-          elevation: 0,
-        ),
         body: FutureBuilder<List<FirebaseImage>>(
             future: controller.futurefiles,
             builder: (ctx, snapshot) {
@@ -31,7 +26,7 @@ class CoversPage extends GetView<CoversController> {
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          buildHeader(
+                          buildHeader(context,
                               '/flutfirebase/covers =${files.length} arquivos '),
                           const SizedBox(
                             height: 12,
@@ -71,12 +66,12 @@ class CoversPage extends GetView<CoversController> {
             }));
   }
 
-  Widget buildHeader(String title) {
+  Widget buildHeader(BuildContext ctx, String title) {
     return Container(
       padding: EdgeInsets.all(10),
       height: kToolbarHeight,
       width: double.infinity,
-      decoration: BoxDecoration(color: Colors.blueAccent),
+      decoration: BoxDecoration(color: Theme.of(ctx).primaryColor),
       child: Row(
         children: [
           Icon(Icons.filter_vintage_rounded, color: Colors.yellow),
