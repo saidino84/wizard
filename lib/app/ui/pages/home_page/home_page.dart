@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:wizard/app/ui/utils/helpers.dart';
 import 'components/body.dart';
 import 'components/home_playing.dart';
+import 'package:badges/badges.dart';
 
 class HomePage extends GetView<HomeController> {
   final String? user_name;
@@ -35,14 +36,17 @@ class HomePage extends GetView<HomeController> {
           ),
           Padding(
             padding: EdgeInsets.all(8.0),
-            child: IconButton(
-                icon: Icon(
-                  Icons.notifications_active_outlined,
-                ),
-                onPressed: () => Get.snackbar(
-                    'Notificacoes',
-                    Strings.on_tab_notiy_test[
-                        Random().nextInt(Strings.on_tab_notiy_test.length)])),
+            child: Badge(
+              badgeContent: Text('4'),
+              child: IconButton(
+                  icon: Icon(
+                    Icons.notifications_active_outlined,
+                  ),
+                  onPressed: () => Get.snackbar(
+                      'Notificacoes',
+                      Strings.on_tab_notiy_test[
+                          Random().nextInt(Strings.on_tab_notiy_test.length)])),
+            ),
           ),
         ],
       ),

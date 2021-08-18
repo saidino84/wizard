@@ -51,6 +51,13 @@ dependencies:
   google_fonts: ^2.1.0
   get_storage:
 
+  # //NOTIFICATIONS FIREBASE
+  firebase_messaging: ^10.0.4
+  # //LOCAIS
+  flutter_local_notifications: ^8.1.1+1
+  badges: ^2.0.1
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

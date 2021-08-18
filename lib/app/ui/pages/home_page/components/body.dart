@@ -27,7 +27,7 @@ class Body extends GetView<AppController> {
         child: Stack(
           children: [
             Positioned(
-              top: kToolbarHeight,
+              top: 0,
               left: 0,
               right: 0,
               child: Container(
@@ -38,7 +38,7 @@ class Body extends GetView<AppController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 20.0),
+                        padding: const EdgeInsets.only(bottom: 10.0),
                         child: Text(
                           'Curta os Beats',
                           style: TextStyle(

@@ -1,18 +1,22 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:wizard/app/data/provider/app_permisions.dart';
 import 'package:wizard/app/data/provider/file_manager.dart';
+import 'package:wizard/app/data/services/app_notification_api.dart';
 import 'package:wizard/app/ui/pages/admin_page/admin_page.dart';
 import 'package:wizard/app/ui/utils/helpers.dart';
 
 class AppController extends GetxController {
   final appdata = GetStorage(); //
+  final NotificationApi notification_api = NotificationApi();
   @override
   void onInit() {
+    notification_api.init_platform_configs();
     // TODO: implement onInit
     appdata.write('darkmode', false);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -89,6 +93,10 @@ class AppController extends GetxController {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor:
             Get.isDarkMode ? Colors.greenAccent : Colors.redAccent));
+  }
+
+  void show_simpleNotify() {
+    notification_api.show_simple_local_notification('Mostra alguma coisa');
   }
 }
 

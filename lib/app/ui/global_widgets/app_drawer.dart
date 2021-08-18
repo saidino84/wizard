@@ -156,42 +156,47 @@ class MainDrawer extends GetView<AppController> {
                   );
                 }),
             SizedBox(height: 70),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: ListTile(
+            ListTile(
+              isThreeLine: true,
+              leading: Icon(Icons.info, color: Colors.green),
+              title: Text(
+                'Wiizard App version (0.1)',
+                style: TextStyle(color: Colors.greenAccent),
+              ),
+              subtitle: Text(
+                'O app wizzard voce foi criado Em cariaco ,cidade de Pemba em Cabo Delgado, com este app voce pode escutar baixar as musicas do rapper wiizard , no puto voltado o rap a mais de xxanos, voce vai curtir ',
+                style: TextStyle(
+                  color: Colors.white30,
+                ),
+              ),
+            ),
+            Obx(
+              () => SwitchListTile(
+                value: controller.is_dark,
+                onChanged: (e) {
+                  controller.changeThme();
+                },
+
                 isThreeLine: true,
-                leading: Icon(Icons.info, color: Colors.green),
+                // leading: Icon(Icons.info, color: Colors.green),
                 title: Text(
-                  'Wiizard App version (0.1)',
+                  'Troque o Tema',
                   style: TextStyle(color: Colors.greenAccent),
                 ),
                 subtitle: Text(
-                  'O app wizzard voce foi criado Em cariaco ,cidade de Pemba em Cabo Delgado, com este app voce pode escutar baixar as musicas do rapper wiizard , no puto voltado o rap a mais de xxanos, voce vai curtir ',
+                  'Troque o tema para ${controller.is_dark ? 'light' : 'dark'}',
                   style: TextStyle(
                     color: Colors.white30,
                   ),
                 ),
               ),
             ),
-            Obx(() => SwitchListTile(
-                  value: controller.is_dark,
-                  onChanged: (e) {
-                    controller.changeThme();
-                  },
-
-                  isThreeLine: true,
-                  // leading: Icon(Icons.info, color: Colors.green),
-                  title: Text(
-                    'Troque o Tema',
-                    style: TextStyle(color: Colors.greenAccent),
-                  ),
-                  subtitle: Text(
-                    'Troque o tema para ${controller.is_dark ? 'light' : 'dark'}',
-                    style: TextStyle(
-                      color: Colors.white30,
-                    ),
-                  ),
-                )),
+            ElevatedButton(
+              onPressed: () {
+                controller.show_simpleNotify();
+              },
+              child: Text('open notification'),
+            ),
           ],
         ),
       ),

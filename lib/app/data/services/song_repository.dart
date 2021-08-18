@@ -48,7 +48,7 @@ class SongRepository {
     var cover_uri = await SongRepository.get_uploaded_file_uri(cover_task);
 
     if (cover_uri != null) {
-      song = song.copyWith(songUrl: cover_uri);
+      song = song.copyWith(cover_url: cover_uri);
       image_uploaded = true;
 
       // IMAGE JA FOI FEITA UPLOAD COM SUCESSO
